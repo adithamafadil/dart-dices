@@ -1,2 +1,5 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+To run the project:
+
+1. Clone the project
+2. Open the project using your IDE
+3. Run `dart run` from your terminal
