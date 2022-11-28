@@ -95,7 +95,7 @@ bool getWinCondition(List<User> users, int index) {
     }
   }
 
-  print('After Calculation #$index: ${users.map((e) => e.toString())}');
+  print('After Calculation #${index - 1}: ${users.map((e) => e.toString())}');
   print('==============================================\n\n');
   if (users.length == 1) {
     print('The eliminated List: ${eliminatedUsers.map((e) => e.toString())}');
