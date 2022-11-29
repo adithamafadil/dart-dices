@@ -44,8 +44,6 @@ enum PLAYER_STATUS {
 
 List<User> eliminatedUsers = [];
 
-int eliminatedCounter = 0;
-
 void main(List<String> arguments) {
   List<User> users = [];
   print('Input max dice for each player: ');
@@ -88,7 +86,6 @@ List<int> getDices(int playersDice) => List.generate(
 bool getWinCondition(List<User> users, int index) {
   for (int i = 0; i < users.length; i++) {
     if (users[i].dices.isEmpty && users[i].notes.isPlaying) {
-      eliminatedCounter += 1;
       users[i].notes = PLAYER_STATUS.eliminated;
       eliminatedUsers.add(users[i]);
       users.removeAt(i);
@@ -123,11 +120,16 @@ void getRolls({
   for (int i = 0; i < users.length; i++) {
     for (int j = 0; j < users[i].dices.length; j++) {
       if (users[i].dices[j] == DICE_WILL_BE_REMOVED) {
-        users[i].dices.removeAt(users[i]
+        final userRemovedDices = users[i]
             .dices
-            .indexWhere((element) => element == DICE_WILL_BE_REMOVED));
+            .where((element) => element == DICE_WILL_BE_REMOVED)
+            .toList()
+            .length;
+        users[i]
+            .dices
+            .removeWhere((element) => element == DICE_WILL_BE_REMOVED);
 
-        users[i].point = users[i].point + 1;
+        users[i].point = users[i].point + userRemovedDices;
       }
     }
 
