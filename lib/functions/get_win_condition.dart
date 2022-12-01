@@ -1,3 +1,4 @@
+import 'package:dice/functions/get_winners.dart';
 import 'package:dice/model/user_model.dart';
 import 'package:dice/utils/constants.dart';
 
@@ -20,9 +21,7 @@ bool getWinCondition(List<User> users, List<User> eliminatedUsers, int index) {
       'After Calculation #${index - 1}: ${finalData.map((e) => e.toString())}',
     );
     print('==============================================\n\n');
-    print(
-      'Winner: Player#${users.reduce((current, next) => current.point >= next.point ? current : next).name}',
-    );
+    print('Winner: Player#${getWinners(users)}');
     print('==============================================\n\n');
     return false;
   }
